@@ -1,0 +1,2137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Elite Spine & Joint | AI Clinic Assistant</title>
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top left, #e8f3ff 0%, transparent 35%),
+                radial-gradient(circle at bottom right, #e7f8f1 0%, transparent 35%),
+                #f4f7fb;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 25px;
+        }
+
+
+        /* =========================
+           MAIN CONTAINER
+        ========================= */
+
+        .container {
+            width: 100%;
+            max-width: 1050px;
+
+            height: 720px;
+
+            background: #ffffff;
+
+            border-radius: 24px;
+
+            overflow: hidden;
+
+            display: flex;
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.12);
+        }
+
+
+        /* =========================
+           LEFT INFORMATION PANEL
+        ========================= */
+
+        .clinic-panel {
+            width: 35%;
+
+            background:
+                linear-gradient(
+                    160deg,
+                    #0b5fa5,
+                    #1769aa 55%,
+                    #0d7c72
+                );
+
+            color: white;
+
+            padding: 40px 30px;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: space-between;
+        }
+
+
+        .clinic-logo {
+            width: 62px;
+            height: 62px;
+
+            border-radius: 18px;
+
+            background: rgba(255,255,255,0.15);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 30px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .clinic-panel h1 {
+            font-size: 29px;
+            line-height: 1.2;
+
+            margin-bottom: 10px;
+        }
+
+
+        .clinic-subtitle {
+            font-size: 14px;
+
+            color: rgba(255,255,255,0.85);
+
+            line-height: 1.6;
+        }
+
+
+        /* DOCTOR CARD */
+
+        .doctor-card {
+            margin-top: 30px;
+
+            padding: 18px;
+
+            background: rgba(255,255,255,0.12);
+
+            border: 1px solid rgba(255,255,255,0.18);
+
+            border-radius: 15px;
+        }
+
+
+        .doctor-card small {
+            display: block;
+
+            font-size: 11px;
+
+            opacity: 0.75;
+
+            margin-bottom: 5px;
+        }
+
+
+        .doctor-card strong {
+            font-size: 17px;
+        }
+
+
+        /* CLINIC DETAILS */
+
+        .clinic-details {
+            margin-top: 25px;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: 15px;
+        }
+
+
+        .detail {
+            display: flex;
+
+            gap: 12px;
+
+            align-items: flex-start;
+        }
+
+
+        .detail-icon {
+            width: 34px;
+            height: 34px;
+
+            flex-shrink: 0;
+
+            border-radius: 9px;
+
+            background: rgba(255,255,255,0.12);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 16px;
+        }
+
+
+        .detail-text {
+            font-size: 13px;
+
+            line-height: 1.5;
+
+            color: rgba(255,255,255,0.9);
+        }
+
+
+        .detail-text strong {
+            display: block;
+
+            color: white;
+
+            margin-bottom: 2px;
+        }
+
+
+        /* LEFT FOOTER */
+
+        .clinic-footer {
+            font-size: 11px;
+
+            color: rgba(255,255,255,0.65);
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================
+           RIGHT CHAT PANEL
+        ========================= */
+
+        .chat-panel {
+            width: 65%;
+
+            display: flex;
+            flex-direction: column;
+
+            background: #ffffff;
+        }
+
+
+        /* CHAT HEADER */
+
+        .chat-header {
+            height: 82px;
+
+            padding: 15px 22px;
+
+            border-bottom: 1px solid #edf0f3;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+
+        .assistant-info {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+
+        .assistant-avatar {
+            width: 46px;
+            height: 46px;
+
+            border-radius: 14px;
+
+            background: #e8f3ff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 23px;
+        }
+
+
+        .assistant-name {
+            font-size: 15px;
+
+            font-weight: bold;
+
+            color: #17202a;
+        }
+
+
+        .assistant-status {
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            font-size: 11px;
+
+            color: #198754;
+
+            margin-top: 3px;
+        }
+
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+
+            background: #20b26b;
+
+            border-radius: 50%;
+        }
+
+
+        .header-badge {
+            font-size: 11px;
+
+            color: #1769aa;
+
+            background: #edf6ff;
+
+            padding: 7px 10px;
+
+            border-radius: 20px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           CHAT BOX
+        ========================= */
+
+        .chat-box {
+            flex: 1;
+
+            padding: 25px;
+
+            overflow-y: auto;
+
+            background: #f8fafc;
+        }
+
+
+        .chat-box::-webkit-scrollbar {
+            width: 5px;
+        }
+
+
+        .chat-box::-webkit-scrollbar-thumb {
+            background: #ccd5df;
+
+            border-radius: 10px;
+        }
+
+
+        /* MESSAGE */
+
+        .message {
+            display: flex;
+
+            margin-bottom: 16px;
+
+            animation: messageIn 0.25s ease;
+        }
+
+
+        @keyframes messageIn {
+
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        .bot-message {
+            justify-content: flex-start;
+        }
+
+
+        .user-message {
+            justify-content: flex-end;
+        }
+
+
+        .message-content {
+            max-width: 75%;
+
+            padding: 13px 16px;
+
+            border-radius: 16px;
+
+            font-size: 14px;
+
+            line-height: 1.55;
+
+            white-space: pre-wrap;
+
+            word-break: break-word;
+        }
+
+
+        .bot-message .message-content {
+            background: white;
+
+            color: #27313a;
+
+            border: 1px solid #e7ebef;
+
+            border-bottom-left-radius: 5px;
+
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+
+        .user-message .message-content {
+            background: #1769aa;
+
+            color: white;
+
+            border-bottom-right-radius: 5px;
+
+            box-shadow: 0 3px 10px rgba(23,105,170,0.18);
+        }
+
+
+        /* =========================
+           TYPING INDICATOR
+        ========================= */
+
+        .typing-message {
+            display: none;
+
+            margin-bottom: 15px;
+        }
+
+
+        .typing-bubble {
+            background: white;
+
+            border: 1px solid #e7ebef;
+
+            padding: 13px 16px;
+
+            border-radius: 16px;
+
+            border-bottom-left-radius: 5px;
+        }
+
+
+        .typing-dots {
+            display: flex;
+
+            gap: 4px;
+        }
+
+
+        .typing-dots span {
+            width: 6px;
+            height: 6px;
+
+            background: #9aa7b2;
+
+            border-radius: 50%;
+
+            animation: typing 1.2s infinite;
+        }
+
+
+        .typing-dots span:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+
+
+        .typing-dots span:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+
+        @keyframes typing {
+
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.5;
+            }
+
+            30% {
+                transform: translateY(-4px);
+                opacity: 1;
+            }
+
+        }
+
+
+        /* =========================
+           QUICK QUESTIONS
+        ========================= */
+
+        .quick-actions {
+            padding: 12px 20px 8px;
+
+            background: #f8fafc;
+
+            display: flex;
+
+            gap: 7px;
+
+            overflow-x: auto;
+        }
+
+
+        .quick-actions::-webkit-scrollbar {
+            display: none;
+        }
+
+
+        .quick-btn {
+            flex-shrink: 0;
+
+            border: 1px solid #d9e2ea;
+
+            background: white;
+
+            color: #345;
+
+            padding: 8px 11px;
+
+            border-radius: 20px;
+
+            cursor: pointer;
+
+            font-size: 11px;
+
+            transition: 0.2s;
+        }
+
+
+        .quick-btn:hover {
+            background: #edf6ff;
+
+            border-color: #1769aa;
+
+            color: #1769aa;
+        }
+
+
+        /* =========================
+           INPUT AREA
+        ========================= */
+
+        .input-area {
+            padding: 12px 18px 10px;
+
+            background: white;
+
+            border-top: 1px solid #edf0f3;
+
+            display: flex;
+
+            gap: 9px;
+        }
+
+
+        .message-input {
+            flex: 1;
+
+            height: 46px;
+
+            border: 1px solid #d8e0e7;
+
+            border-radius: 13px;
+
+            padding: 0 15px;
+
+            outline: none;
+
+            font-size: 14px;
+
+            color: #222;
+
+            transition: 0.2s;
+        }
+
+
+        .message-input:focus {
+            border-color: #1769aa;
+
+            box-shadow: 0 0 0 3px rgba(23,105,170,0.08);
+        }
+
+
+        .send-btn {
+            width: 90px;
+
+            border: none;
+
+            border-radius: 13px;
+
+            background: #1769aa;
+
+            color: white;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .send-btn:hover {
+            background: #125487;
+        }
+
+
+        .send-btn:disabled {
+            background: #9db8ce;
+
+            cursor: not-allowed;
+        }
+
+
+        /* =========================
+           BOTTOM ACTIONS
+        ========================= */
+
+        .bottom-actions {
+            padding: 0 18px 13px;
+
+            display: flex;
+
+            gap: 8px;
+
+            background: white;
+        }
+
+
+        .action-btn {
+            flex: 1;
+
+            height: 38px;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            transition: 0.2s;
+        }
+
+
+        .appointment-btn {
+            border: none;
+
+            background: #198754;
+
+            color: white;
+        }
+
+
+        .appointment-btn:hover {
+            background: #157347;
+        }
+
+
+        .call-btn {
+            border: 1px solid #d8e0e7;
+
+            background: white;
+
+            color: #1769aa;
+        }
+
+
+        .call-btn:hover {
+            background: #f2f8fd;
+        }
+
+
+        .whatsapp-btn {
+            border: 1px solid #d8e0e7;
+
+            background: white;
+
+            color: #168c4d;
+        }
+
+
+        .whatsapp-btn:hover {
+            background: #effaf4;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .chat-footer {
+            text-align: center;
+
+            font-size: 10px;
+
+            color: #89939d;
+
+            padding: 0 15px 12px;
+
+            background: white;
+        }
+
+
+        /* =========================
+           APPOINTMENT FORM
+        ========================= */
+
+        .appointment-form {
+            display: none;
+
+            position: absolute;
+
+            z-index: 20;
+
+            width: 100%;
+
+            max-width: 440px;
+
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            box-shadow: 0 25px 70px rgba(0,0,0,0.25);
+
+            border: 1px solid #e5e9ed;
+        }
+
+
+        .form-overlay {
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 10;
+
+            background: rgba(13, 24, 35, 0.45);
+
+            backdrop-filter: blur(3px);
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+        }
+
+
+        .form-overlay.active {
+            display: flex;
+        }
+
+
+        .appointment-form h2 {
+            font-size: 21px;
+
+            color: #17202a;
+
+            margin-bottom: 5px;
+        }
+
+
+        .appointment-form .subtitle {
+            font-size: 12px;
+
+            color: #78838d;
+
+            line-height: 1.5;
+
+            margin-bottom: 20px;
+        }
+
+
+        .close-form {
+            position: absolute;
+
+            right: 17px;
+
+            top: 15px;
+
+            width: 30px;
+            height: 30px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: #f1f3f5;
+
+            cursor: pointer;
+
+            color: #555;
+
+            font-size: 18px;
+        }
+
+
+        .form-group {
+            margin-bottom: 13px;
+        }
+
+
+        .form-group label {
+            display: block;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            color: #34404a;
+
+            margin-bottom: 5px;
+        }
+
+
+        .form-group input {
+            width: 100%;
+
+            height: 43px;
+
+            border: 1px solid #d6dde4;
+
+            border-radius: 10px;
+
+            padding: 0 12px;
+
+            font-size: 13px;
+
+            outline: none;
+
+            background: #fff;
+        }
+
+
+        .form-group input:focus {
+            border-color: #1769aa;
+
+            box-shadow: 0 0 0 3px rgba(23,105,170,0.08);
+        }
+
+
+        .submit-btn {
+            width: 100%;
+
+            height: 44px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #1769aa;
+
+            color: white;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            margin-top: 5px;
+        }
+
+
+        .submit-btn:hover {
+            background: #125487;
+        }
+
+
+        .submit-btn:disabled {
+            background: #9db8ce;
+
+            cursor: not-allowed;
+        }
+
+
+        .form-note {
+            font-size: 10px;
+
+            color: #89939d;
+
+            line-height: 1.5;
+
+            margin-top: 12px;
+
+            text-align: center;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            body {
+                padding: 0;
+            }
+
+
+            .container {
+                height: 100vh;
+
+                max-width: none;
+
+                border-radius: 0;
+            }
+
+
+            .clinic-panel {
+                display: none;
+            }
+
+
+            .chat-panel {
+                width: 100%;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .chat-header {
+                height: 72px;
+
+                padding: 12px 15px;
+            }
+
+
+            .header-badge {
+                display: none;
+            }
+
+
+            .chat-box {
+                padding: 18px 14px;
+            }
+
+
+            .message-content {
+                max-width: 86%;
+
+                font-size: 13px;
+            }
+
+
+            .quick-actions {
+                padding-left: 14px;
+
+                padding-right: 14px;
+            }
+
+
+            .input-area {
+                padding-left: 12px;
+
+                padding-right: 12px;
+            }
+
+
+            .send-btn {
+                width: 70px;
+            }
+
+
+            .bottom-actions {
+                padding-left: 12px;
+
+                padding-right: 12px;
+            }
+
+
+            .action-btn {
+                font-size: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         MAIN APP
+    ========================= -->
+
+    <div class="container">
+
+
+        <!-- =========================
+             CLINIC INFORMATION
+        ========================= -->
+
+        <div class="clinic-panel">
+
+            <div>
+
+                <div class="clinic-logo">
+                    🩺
+                </div>
+
+
+                <h1>
+                    Elite Spine<br>
+                    & Joint
+                </h1>
+
+
+                <p class="clinic-subtitle">
+                    Your trusted AI-powered clinic assistant.
+                    Get quick information about our services,
+                    doctor, working hours and appointments.
+                </p>
+
+
+                <div class="doctor-card">
+
+                    <small>
+                        CONSULTANT
+                    </small>
+
+                    <strong>
+                        Dr. Ankit Desai
+                    </strong>
+
+                </div>
+
+
+                <div class="clinic-details">
+
+
+                    <div class="detail">
+
+                        <div class="detail-icon">
+                            🕐
+                        </div>
+
+                        <div class="detail-text">
+
+                            <strong>
+                                Working Hours
+                            </strong>
+
+                            Monday – Saturday<br>
+                            10:00 AM – 7:00 PM
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <div class="detail-icon">
+                            📍
+                        </div>
+
+                        <div class="detail-text">
+
+                            <strong>
+                                Location
+                            </strong>
+
+                            5th Floor, CBC Building<br>
+                            Near Railway Station
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <div class="detail-icon">
+                            📞
+                        </div>
+
+                        <div class="detail-text">
+
+                            <strong>
+                                Contact
+                            </strong>
+
+                            9054296779
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <div class="clinic-footer">
+
+                AI assistant provides general clinic
+                information only and does not replace
+                professional medical advice.
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             CHAT PANEL
+        ========================= -->
+
+        <div class="chat-panel">
+
+
+            <!-- CHAT HEADER -->
+
+            <div class="chat-header">
+
+                <div class="assistant-info">
+
+                    <div class="assistant-avatar">
+                        🤖
+                    </div>
+
+                    <div>
+
+                        <div class="assistant-name">
+                            Elite AI Assistant
+                        </div>
+
+                        <div class="assistant-status">
+
+                            <span class="status-dot"></span>
+
+                            Online
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="header-badge">
+                    AI CLINIC ASSISTANT
+                </div>
+
+            </div>
+
+
+
+            <!-- CHAT MESSAGES -->
+
+            <div class="chat-box" id="chatBox">
+
+
+                <div class="message bot-message">
+
+                    <div class="message-content">
+
+                        Hello! 👋 Welcome to
+                        Elite Spine & Joint.
+
+                        I can help you with:
+
+                        • Clinic information
+                        • Orthopedic consultation
+                        • Spine & joint services
+                        • Doctor details
+                        • Working hours
+                        • Appointment enquiries
+
+                        How can I help you today?
+
+                    </div>
+
+                </div>
+
+
+                <!-- TYPING INDICATOR -->
+
+                <div
+                    class="typing-message"
+                    id="typingIndicator"
+                >
+
+                    <div class="typing-bubble">
+
+                        <div class="typing-dots">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- QUICK QUESTIONS -->
+
+            <div class="quick-actions">
+
+
+                <button
+                    class="quick-btn"
+                    onclick="quickQuestion('What services does the clinic provide?')"
+                >
+                    🏥 Services
+                </button>
+
+
+                <button
+                    class="quick-btn"
+                    onclick="quickQuestion('What are the clinic working hours?')"
+                >
+                    🕐 Working Hours
+                </button>
+
+
+                <button
+                    class="quick-btn"
+                    onclick="quickQuestion('Who is the doctor?')"
+                >
+                    👨‍⚕️ Doctor
+                </button>
+
+
+                <button
+                    class="quick-btn"
+                    onclick="quickQuestion('Where is the clinic located?')"
+                >
+                    📍 Location
+                </button>
+
+
+            </div>
+
+
+
+            <!-- INPUT -->
+
+            <div class="input-area">
+
+                <input
+                    type="text"
+                    id="messageInput"
+                    class="message-input"
+                    placeholder="Ask something about the clinic..."
+                    maxlength="1000"
+                    autocomplete="off"
+                >
+
+
+                <button
+                    class="send-btn"
+                    id="sendBtn"
+                    onclick="sendMessage()"
+                >
+                    Send
+                </button>
+
+            </div>
+
+
+
+            <!-- ACTION BUTTONS -->
+
+            <div class="bottom-actions">
+
+
+                <button
+                    class="action-btn appointment-btn"
+                    onclick="showAppointmentForm()"
+                >
+                    📅 Book Appointment
+                </button>
+
+
+                <button
+                    class="action-btn call-btn"
+                    onclick="callClinic()"
+                >
+                    📞 Call
+                </button>
+
+
+                <button
+                    class="action-btn whatsapp-btn"
+                    onclick="openWhatsApp()"
+                >
+                    💬 WhatsApp
+                </button>
+
+
+            </div>
+
+
+            <div class="chat-footer">
+
+                Elite Spine & Joint • AI Assistant
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         APPOINTMENT OVERLAY
+    ========================= -->
+
+    <div
+        class="form-overlay"
+        id="formOverlay"
+    >
+
+
+        <div
+            class="appointment-form"
+            style="display:block;"
+        >
+
+
+            <button
+                class="close-form"
+                onclick="hideAppointmentForm()"
+            >
+                ×
+            </button>
+
+
+            <h2>
+                Book an Appointment
+            </h2>
+
+
+            <p class="subtitle">
+
+                Submit your preferred appointment details.
+                Clinic staff will contact you for confirmation.
+
+            </p>
+
+
+            <div class="form-group">
+
+                <label for="name">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your full name"
+                    maxlength="100"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="phone">
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    placeholder="Enter phone number"
+                    maxlength="15"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="date">
+                    Preferred Date
+                </label>
+
+                <input
+                    type="date"
+                    id="date"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="time">
+                    Preferred Time
+                </label>
+
+                <input
+                    type="time"
+                    id="time"
+                    min="10:00"
+                    max="18:59"
+                >
+
+            </div>
+
+
+            <button
+                class="submit-btn"
+                id="submitAppointmentBtn"
+                onclick="submitAppointment()"
+            >
+                Submit Appointment Enquiry
+            </button>
+
+
+            <p class="form-note">
+
+                Appointment is not confirmed automatically.
+                Clinic staff will contact you for confirmation.
+
+            </p>
+
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+
+        /* =========================
+           GLOBAL STATE
+        ========================= */
+
+        let isSending = false;
+
+
+
+        /* =========================
+           SEND CHAT MESSAGE
+        ========================= */
+
+        async function sendMessage() {
+
+
+            if (isSending) {
+                return;
+            }
+
+
+            const input =
+                document.getElementById("messageInput");
+
+
+            const message =
+                input.value.trim();
+
+
+            if (!message) {
+                return;
+            }
+
+
+            addMessage(message, "user");
+
+
+            input.value = "";
+
+
+            isSending = true;
+
+
+            const sendBtn =
+                document.getElementById("sendBtn");
+
+
+            sendBtn.disabled = true;
+
+            sendBtn.textContent = "···";
+
+
+            showTyping();
+
+
+            try {
+
+
+                const response =
+                    await fetch("/chat", {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            message: message
+                        })
+
+                    });
+
+
+                const data =
+                    await response.json();
+
+
+                hideTyping();
+
+
+                if (
+                    response.ok &&
+                    data.reply
+                ) {
+
+                    addMessage(
+                        data.reply,
+                        "bot"
+                    );
+
+                } else {
+
+                    addMessage(
+                        "Sorry, I am unable to respond right now. Please contact the clinic directly.",
+                        "bot"
+                    );
+
+                }
+
+
+            } catch (error) {
+
+
+                console.error(
+                    "Chat Error:",
+                    error
+                );
+
+
+                hideTyping();
+
+
+                addMessage(
+                    "Sorry, something went wrong. Please try again.",
+                    "bot"
+                );
+
+
+            } finally {
+
+
+                isSending = false;
+
+                sendBtn.disabled = false;
+
+                sendBtn.textContent = "Send";
+
+
+                input.focus();
+
+            }
+
+        }
+
+
+
+        /* =========================
+           ADD MESSAGE
+        ========================= */
+
+        function addMessage(
+            message,
+            sender
+        ) {
+
+
+            const chatBox =
+                document.getElementById("chatBox");
+
+
+            const typingIndicator =
+                document.getElementById(
+                    "typingIndicator"
+                );
+
+
+            const messageWrapper =
+                document.createElement("div");
+
+
+            messageWrapper.classList.add(
+                "message"
+            );
+
+
+            if (sender === "user") {
+
+                messageWrapper.classList.add(
+                    "user-message"
+                );
+
+            } else {
+
+                messageWrapper.classList.add(
+                    "bot-message"
+                );
+
+            }
+
+
+            const messageContent =
+                document.createElement("div");
+
+
+            messageContent.classList.add(
+                "message-content"
+            );
+
+
+            /*
+             * textContent is intentionally used
+             * instead of innerHTML for security.
+             */
+
+            messageContent.textContent =
+                message;
+
+
+            messageWrapper.appendChild(
+                messageContent
+            );
+
+
+            chatBox.insertBefore(
+                messageWrapper,
+                typingIndicator
+            );
+
+
+            scrollChatToBottom();
+
+        }
+
+
+
+        /* =========================
+           TYPING INDICATOR
+        ========================= */
+
+        function showTyping() {
+
+            const typing =
+                document.getElementById(
+                    "typingIndicator"
+                );
+
+            typing.style.display =
+                "block";
+
+            scrollChatToBottom();
+
+        }
+
+
+        function hideTyping() {
+
+            const typing =
+                document.getElementById(
+                    "typingIndicator"
+                );
+
+            typing.style.display =
+                "none";
+
+        }
+
+
+
+        /* =========================
+           SCROLL CHAT
+        ========================= */
+
+        function scrollChatToBottom() {
+
+            const chatBox =
+                document.getElementById(
+                    "chatBox"
+                );
+
+            setTimeout(() => {
+
+                chatBox.scrollTop =
+                    chatBox.scrollHeight;
+
+            }, 50);
+
+        }
+
+
+
+        /* =========================
+           QUICK QUESTION
+        ========================= */
+
+        function quickQuestion(
+            question
+        ) {
+
+            const input =
+                document.getElementById(
+                    "messageInput"
+                );
+
+
+            input.value =
+                question;
+
+
+            sendMessage();
+
+        }
+
+
+
+        /* =========================
+           ENTER KEY
+        ========================= */
+
+        document
+            .getElementById("messageInput")
+            .addEventListener(
+                "keydown",
+                function(event) {
+
+                    if (
+                        event.key === "Enter" &&
+                        !event.shiftKey
+                    ) {
+
+                        event.preventDefault();
+
+                        sendMessage();
+
+                    }
+
+                }
+            );
+
+
+
+        /* =========================
+           APPOINTMENT FORM
+        ========================= */
+
+        function showAppointmentForm() {
+
+
+            const overlay =
+                document.getElementById(
+                    "formOverlay"
+                );
+
+
+            overlay.classList.add(
+                "active"
+            );
+
+
+            document
+                .getElementById("name")
+                .focus();
+
+
+            setMinimumDate();
+
+        }
+
+
+
+        function hideAppointmentForm() {
+
+
+            document
+                .getElementById("formOverlay")
+                .classList.remove(
+                    "active"
+                );
+
+        }
+
+
+
+        /* =========================
+           CLOSE FORM BY OUTSIDE CLICK
+        ========================= */
+
+        document
+            .getElementById("formOverlay")
+            .addEventListener(
+                "click",
+                function(event) {
+
+                    if (
+                        event.target ===
+                        this
+                    ) {
+
+                        hideAppointmentForm();
+
+                    }
+
+                }
+            );
+
+
+
+        /* =========================
+           APPOINTMENT SUBMISSION
+        ========================= */
+
+        async function submitAppointment() {
+
+
+            const name =
+                document.getElementById(
+                    "name"
+                ).value.trim();
+
+
+            const phone =
+                document.getElementById(
+                    "phone"
+                ).value.trim();
+
+
+            const date =
+                document.getElementById(
+                    "date"
+                ).value;
+
+
+            const time =
+                document.getElementById(
+                    "time"
+                ).value;
+
+
+            if (
+                !name ||
+                !phone ||
+                !date ||
+                !time
+            ) {
+
+                alert(
+                    "Please fill all appointment details."
+                );
+
+                return;
+
+            }
+
+
+            const cleanPhone =
+                phone.replace(
+                    /[\s-]/g,
+                    ""
+                );
+
+
+            if (
+                !/^\d{10,15}$/.test(
+                    cleanPhone
+                )
+            ) {
+
+                alert(
+                    "Please enter a valid phone number."
+                );
+
+                return;
+
+            }
+
+
+            const submitBtn =
+                document.getElementById(
+                    "submitAppointmentBtn"
+                );
+
+
+            submitBtn.disabled = true;
+
+            submitBtn.textContent =
+                "Submitting...";
+
+
+            try {
+
+
+                const response =
+                    await fetch(
+                        "/appointment",
+                        {
+
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+
+                                name: name,
+
+                                phone: cleanPhone,
+
+                                date: date,
+
+                                time: time
+
+                            })
+
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    response.ok &&
+                    data.success
+                ) {
+
+
+                    alert(
+                        "Appointment enquiry submitted successfully! Clinic staff will contact you for confirmation."
+                    );
+
+
+                    document.getElementById(
+                        "name"
+                    ).value = "";
+
+
+                    document.getElementById(
+                        "phone"
+                    ).value = "";
+
+
+                    document.getElementById(
+                        "date"
+                    ).value = "";
+
+
+                    document.getElementById(
+                        "time"
+                    ).value = "";
+
+
+                    hideAppointmentForm();
+
+
+                    addMessage(
+                        "Your appointment enquiry has been submitted successfully. Clinic staff will contact you for confirmation.",
+                        "bot"
+                    );
+
+
+                } else {
+
+
+                    alert(
+                        data.message ||
+                        "Unable to submit appointment."
+                    );
+
+                }
+
+
+            } catch (error) {
+
+
+                console.error(
+                    "Appointment Error:",
+                    error
+                );
+
+
+                alert(
+                    "Something went wrong. Please try again."
+                );
+
+
+            } finally {
+
+
+                submitBtn.disabled = false;
+
+                submitBtn.textContent =
+                    "Submit Appointment Enquiry";
+
+            }
+
+        }
+
+
+
+        /* =========================
+           SET MINIMUM DATE
+        ========================= */
+
+        function setMinimumDate() {
+
+
+            const dateInput =
+                document.getElementById(
+                    "date"
+                );
+
+
+            const today =
+                new Date();
+
+
+            const year =
+                today.getFullYear();
+
+
+            const month =
+                String(
+                    today.getMonth() + 1
+                ).padStart(2, "0");
+
+
+            const day =
+                String(
+                    today.getDate()
+                ).padStart(2, "0");
+
+
+            dateInput.min =
+                `${year}-${month}-${day}`;
+
+        }
+
+
+
+        /* =========================
+           CALL CLINIC
+        ========================= */
+
+        function callClinic() {
+
+            window.location.href =
+                "tel:9054296779";
+
+        }
+
+
+
+        /* =========================
+           WHATSAPP
+        ========================= */
+
+        function openWhatsApp() {
+
+
+            const phone =
+                "919054296779";
+
+
+            const message =
+                encodeURIComponent(
+                    "Hello Elite Spine & Joint, I would like to know more about the clinic."
+                );
+
+
+            window.open(
+                `https://wa.me/${phone}?text=${message}`,
+                "_blank"
+            );
+
+        }
+
+
+
+        /* =========================
+           INITIAL SETUP
+        ========================= */
+
+        setMinimumDate();
+
+
+    </script>
+
+
+</body>
+
+</html>

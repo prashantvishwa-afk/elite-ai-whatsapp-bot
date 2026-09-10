@@ -1,0 +1,18 @@
+Clinic Name: Elite Spine & Joint
+
+Doctor: Dr. Ankit Desai
+
+Services:
+- Orthopedic consultation
+- Spine consultation
+- Joint consultation
+
+Working Hours:
+Monday to Saturday
+10:00 AM to 7:00 PM
+
+Location:
+5th floor, CBC building near railway station
+
+Phone:
+9054296779
