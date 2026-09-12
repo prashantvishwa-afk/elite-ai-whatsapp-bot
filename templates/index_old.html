@@ -903,133 +903,6 @@
         }
 
 
-
-        /* =========================
-           CLIENT DEMO POLISH
-        ========================= */
-
-        .chat-panel {
-            position: relative;
-        }
-
-        .chat-header {
-            background: rgba(255,255,255,0.98);
-        }
-
-        .assistant-avatar {
-            box-shadow: 0 4px 12px rgba(23,105,170,0.10);
-        }
-
-        .header-badge {
-            letter-spacing: 0.4px;
-        }
-
-        .quick-actions {
-            scrollbar-width: none;
-        }
-
-        .quick-btn {
-            font-weight: 600;
-        }
-
-        .quick-btn:active,
-        .action-btn:active,
-        .send-btn:active {
-            transform: translateY(1px);
-        }
-
-        .message-content {
-            white-space: pre-wrap;
-        }
-
-        .send-btn {
-            min-width: 90px;
-        }
-
-        .appointment-form {
-            position: relative;
-            animation: formIn 0.22s ease;
-        }
-
-        @keyframes formIn {
-            from {
-                opacity: 0;
-                transform: translateY(8px) scale(0.98);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .form-overlay {
-            transition: opacity 0.18s ease;
-        }
-
-        .close-form:hover {
-            background: #e8edf2;
-        }
-
-        .form-group input:invalid:not(:placeholder-shown) {
-            border-color: #dc3545;
-        }
-
-        .form-status {
-            display: none;
-            margin-top: 12px;
-            padding: 11px 12px;
-            border-radius: 10px;
-            font-size: 12px;
-            line-height: 1.45;
-            text-align: center;
-        }
-
-        .form-status.success {
-            display: block;
-            background: #eaf8f0;
-            color: #146c43;
-            border: 1px solid #b7e4c7;
-        }
-
-        .form-status.error {
-            display: block;
-            background: #fff1f2;
-            color: #b42318;
-            border: 1px solid #f3b5bd;
-        }
-
-        .clinic-footer {
-            max-width: 250px;
-        }
-
-        @media (max-width: 850px) {
-            .container {
-                box-shadow: none;
-            }
-
-            .chat-footer {
-                padding-bottom: 10px;
-            }
-        }
-
-        @media (max-width: 500px) {
-            .input-area {
-                gap: 7px;
-            }
-
-            .send-btn {
-                min-width: 70px;
-            }
-
-            .appointment-form {
-                padding: 22px 18px;
-            }
-
-            .appointment-form h2 {
-                padding-right: 25px;
-            }
-        }
-
         /* =========================
            RESPONSIVE
         ========================= */
@@ -1306,16 +1179,19 @@
 
                     <div class="message-content">
 
-                        Hello! 👋 Welcome to Elite Spine & Joint.
+                        Hello! 👋 Welcome to
+                        Elite Spine & Joint.
 
                         I can help you with:
+
                         • Clinic information
-                        • Orthopedic, spine & joint consultations
+                        • Orthopedic consultation
+                        • Spine & joint services
                         • Doctor details
-                        • Working hours & location
+                        • Working hours
                         • Appointment enquiries
 
-                        Choose a quick question below or type your question.
+                        How can I help you today?
 
                     </div>
 
@@ -1382,13 +1258,6 @@
                     onclick="quickQuestion('Where is the clinic located?')"
                 >
                     📍 Location
-                </button>
-
-                <button
-                    class="quick-btn"
-                    onclick="showAppointmentForm()"
-                >
-                    📅 Appointment
                 </button>
 
 
@@ -2138,10 +2007,10 @@
                 } else {
 
 
-                    formStatus.className = "form-status error";
-                    formStatus.textContent =
+                    alert(
                         data.message ||
-                        "Unable to submit appointment. Please try again.";
+                        "Unable to submit appointment."
+                    );
 
                 }
 
@@ -2155,9 +2024,9 @@
                 );
 
 
-                formStatus.className = "form-status error";
-                formStatus.textContent =
-                    "Something went wrong. Please try again.";
+                alert(
+                    "Something went wrong. Please try again."
+                );
 
 
             } finally {
